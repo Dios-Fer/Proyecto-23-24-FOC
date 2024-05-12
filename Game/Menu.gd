@@ -18,4 +18,4 @@ func _on_cerrar_pressed():
 
 # Boton para ir a la pantalla del perfil
 func _on_perfil_pressed():
-	#get_tree().change_scene_to_file("res://Perfil.tscn")
+	get_tree().change_scene_to_file("res://Perfil.tscn")
