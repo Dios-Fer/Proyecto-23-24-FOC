@@ -3,8 +3,7 @@ extends Control
 
 # Funcion llamada al inicio
 func _ready():
-	pass # Replace with function body.
-
+	$ParallaxBackground.speed = 0
 
 # Funcion de actualizacion
 func _process(delta):

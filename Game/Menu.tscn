@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0f3ymh478ctb"]
+[gd_scene load_steps=4 format=3 uid="uid://c0f3ymh478ctb"]
 
 [ext_resource type="Script" path="res://Menu.gd" id="1_cte5g"]
+[ext_resource type="PackedScene" uid="uid://bgsbfhlb20c7h" path="res://Scenes/parallax_background_pieces.tscn" id="2_8m1sd"]
+[ext_resource type="PackedScene" uid="uid://drfnqsugnf5r1" path="res://Scenes/parallax_background.tscn" id="3_wcagn"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -29,6 +31,10 @@ layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 0
 text = "X"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("3_wcagn")]
+
+[node name="ParallaxBackgroundPieces" parent="." instance=ExtResource("2_8m1sd")]
 
 [connection signal="pressed" from="VBoxContainer/Perfil" to="." method="_on_perfil_pressed"]
 [connection signal="pressed" from="VBoxContainer/Cerrar" to="." method="_on_cerrar_pressed"]
