@@ -20,7 +20,7 @@ func _on_edit_pressed():
 	pass #TODO 1 
 
 func _on_exit_pressed():
-	get_tree().change_scene_to_file("res://Menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Menu.tscn")
 
 #Guardar los cambios
 func saveData():

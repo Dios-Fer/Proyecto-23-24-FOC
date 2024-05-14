@@ -18,7 +18,7 @@ func _ready():
 	# En caso de que ya hallas accedido con anterioridad lo detectaremos del sistema
 	if Firebase.Auth.check_auth_file():
 		$VBoxContainer/StateLabel.text = "Accedido"
-		get_tree().change_scene_to_file("res://Menu.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Menu.tscn")
 
 
 # Funcion de actualizacion
@@ -44,14 +44,14 @@ func on_login_succeeded(auth):
 	print(auth)
 	$VBoxContainer/StateLabel.text = "Accedido"
 	Firebase.Auth.save_auth(auth)
-	get_tree().change_scene_to_file("res://Menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Menu.tscn")
 
 # En caso de que se halla registrado de manera correcta
 func on_signup_succeeded(auth):
 	print(auth)
 	$VBoxContainer/StateLabel.text = "Registro completado"
 	Firebase.Auth.save_auth(auth)
-	get_tree().change_scene_to_file("res://Menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Menu.tscn")
 
 # En caso de que no se halla hecho login de manera correcta
 func on_login_failed(error_code, message):

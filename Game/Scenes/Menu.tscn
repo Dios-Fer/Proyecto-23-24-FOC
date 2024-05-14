@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0f3ymh478ctb"]
 
-[ext_resource type="Script" path="res://Menu.gd" id="1_cte5g"]
-[ext_resource type="PackedScene" uid="uid://bgsbfhlb20c7h" path="res://Scenes/parallax_background_pieces.tscn" id="2_8m1sd"]
-[ext_resource type="PackedScene" uid="uid://drfnqsugnf5r1" path="res://Scenes/parallax_background.tscn" id="3_wcagn"]
+[ext_resource type="Script" path="res://Scripts/Menu.gd" id="1_l6n6t"]
+[ext_resource type="PackedScene" uid="uid://drfnqsugnf5r1" path="res://Scenes/parallax_background.tscn" id="2_kigk6"]
+[ext_resource type="PackedScene" uid="uid://bgsbfhlb20c7h" path="res://Scenes/parallax_background_pieces.tscn" id="3_ikhir"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -11,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_cte5g")
+script = ExtResource("1_l6n6t")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -32,9 +32,9 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "X"
 
-[node name="ParallaxBackground" parent="." instance=ExtResource("3_wcagn")]
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_kigk6")]
 
-[node name="ParallaxBackgroundPieces" parent="." instance=ExtResource("2_8m1sd")]
+[node name="ParallaxBackgroundPieces" parent="." instance=ExtResource("3_ikhir")]
 
 [connection signal="pressed" from="VBoxContainer/Perfil" to="." method="_on_perfil_pressed"]
 [connection signal="pressed" from="VBoxContainer/Cerrar" to="." method="_on_cerrar_pressed"]

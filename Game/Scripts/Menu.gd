@@ -12,9 +12,9 @@ func _process(delta):
 # Actual boton de cerrar sesion
 func _on_cerrar_pressed():
 	Firebase.Auth.logout()
-	get_tree().change_scene_to_file("res://Autentication.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Autentication.tscn")
 
 
 # Boton para ir a la pantalla del perfil
 func _on_perfil_pressed():
-	get_tree().change_scene_to_file("res://Perfil.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Perfil.tscn")

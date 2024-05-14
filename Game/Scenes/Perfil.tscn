@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c2l6t6ntdycod"]
 
-[ext_resource type="Script" path="res://Perfil.gd" id="1_omisq"]
-[ext_resource type="PackedScene" uid="uid://drfnqsugnf5r1" path="res://Scenes/parallax_background.tscn" id="2_t87ov"]
+[ext_resource type="Script" path="res://Scripts/Perfil.gd" id="1_5s5cn"]
+[ext_resource type="PackedScene" uid="uid://drfnqsugnf5r1" path="res://Scenes/parallax_background.tscn" id="2_65ke0"]
 
 [node name="Perfil" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_omisq")
+script = ExtResource("1_5s5cn")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -48,7 +48,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "Exit"
 
-[node name="ParallaxBackground" parent="." instance=ExtResource("2_t87ov")]
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_65ke0")]
 
 [connection signal="pressed" from="VBoxContainer/Edit" to="." method="_on_edit_pressed"]
 [connection signal="pressed" from="VBoxContainer/Save" to="." method="_on_save_pressed"]
