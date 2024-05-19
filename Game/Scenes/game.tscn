@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://nhw1osru862s"]
+
+[ext_resource type="Script" path="res://Game.gd" id="1_43eeh"]
+[ext_resource type="PackedScene" uid="uid://bm0i5pnrue2pc" path="res://Scenes/casilla.tscn" id="2_q4wer"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_43eeh")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.152941, 0.427451, 0.6, 1)
+
+[node name="Tablero" type="VBoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 470.0
+offset_right = -531.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/Tablero"]
+layout_mode = 2
+
+[node name="Casilla1A" parent="Background/Tablero/HBoxContainer" instance=ExtResource("2_q4wer")]
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Background/Tablero"]
+layout_mode = 2

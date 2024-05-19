@@ -21,6 +21,9 @@ func _on_cerrar_pressed():
 func _on_perfil_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Perfil.tscn")
 
+func _on_play_pressed():
+	get_tree().change_scene_to_file("res://Scenes/game.tscn")
+
 #Cargar los datos que mostramos
 func loadData():
 	var auth = Firebase.Auth.auth
@@ -40,6 +43,9 @@ func loadData():
 				$VBoxContainer/Perfil.text = document.doc_fields.user_name
 		else:
 			print(finished_task.error)
+
+
+
 
 
 
