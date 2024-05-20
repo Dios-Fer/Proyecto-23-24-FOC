@@ -36,7 +36,18 @@ grow_vertical = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/Tablero"]
 layout_mode = 2
 
-[node name="Casilla1A" parent="Background/Tablero/HBoxContainer" instance=ExtResource("2_q4wer")]
+[node name="Casilla8A" parent="Background/Tablero/HBoxContainer" instance=ExtResource("2_q4wer")]
+
+[node name="Button" type="Button" parent="Background/Tablero/HBoxContainer/Casilla8A"]
+offset_right = 150.0
+offset_bottom = 150.0
+size_flags_horizontal = 4
+text = "HOLA"
+
+[node name="Casilla8B" parent="Background/Tablero/HBoxContainer" instance=ExtResource("2_q4wer")]
+position = Vector2(150, 1)
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Background/Tablero"]
 layout_mode = 2
+
+[connection signal="pressed" from="Background/Tablero/HBoxContainer/Casilla8A/Button" to="." method="_on_button_pressed"]
