@@ -7,8 +7,8 @@
 script = ExtResource("1_pva6i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(75, 75)
-scale = Vector2(0.5, 0.5)
+position = Vector2(67, 67)
+scale = Vector2(0.45, 0.45)
 texture = ExtResource("2_jpend")
 flip_h = true
 

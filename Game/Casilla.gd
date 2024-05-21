@@ -1,4 +1,5 @@
 extends Node2D
+class_name Casilla
 
 @onready var ID_CASILLA = ""
 @onready var skinFicha = ""

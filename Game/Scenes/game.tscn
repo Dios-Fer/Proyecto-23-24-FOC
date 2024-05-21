@@ -28,26 +28,232 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 470.0
-offset_right = -531.0
+offset_left = 363.0
+offset_right = -478.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/Tablero"]
+[node name="Fila8" type="HBoxContainer" parent="Background/Tablero"]
+custom_minimum_size = Vector2(0, 131)
 layout_mode = 2
 
-[node name="Casilla8A" parent="Background/Tablero/HBoxContainer" instance=ExtResource("2_q4wer")]
+[node name="Casilla8A" parent="Background/Tablero/Fila8" instance=ExtResource("2_q4wer")]
 
-[node name="Button" type="Button" parent="Background/Tablero/HBoxContainer/Casilla8A"]
-offset_right = 150.0
-offset_bottom = 150.0
+[node name="Button2" type="Button" parent="Background/Tablero/Fila8/Casilla8A"]
+offset_right = 135.0
+offset_bottom = 135.0
 size_flags_horizontal = 4
 text = "HOLA"
+flat = true
 
-[node name="Casilla8B" parent="Background/Tablero/HBoxContainer" instance=ExtResource("2_q4wer")]
-position = Vector2(150, 1)
+[node name="Casilla8B" parent="Background/Tablero/Fila8" instance=ExtResource("2_q4wer")]
+position = Vector2(135, 0)
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Background/Tablero"]
+[node name="Casilla8C" parent="Background/Tablero/Fila8" instance=ExtResource("2_q4wer")]
+position = Vector2(270, 0)
+
+[node name="Casilla8D" parent="Background/Tablero/Fila8" instance=ExtResource("2_q4wer")]
+position = Vector2(405, 0)
+
+[node name="Casilla8E" parent="Background/Tablero/Fila8" instance=ExtResource("2_q4wer")]
+position = Vector2(540, 0)
+
+[node name="Casilla8F" parent="Background/Tablero/Fila8" instance=ExtResource("2_q4wer")]
+position = Vector2(675, 0)
+
+[node name="Casilla8G" parent="Background/Tablero/Fila8" instance=ExtResource("2_q4wer")]
+position = Vector2(810, 0)
+
+[node name="Casilla8H" parent="Background/Tablero/Fila8" instance=ExtResource("2_q4wer")]
+position = Vector2(945, 0)
+
+[node name="Fila7" type="HBoxContainer" parent="Background/Tablero"]
+custom_minimum_size = Vector2(0, 131)
 layout_mode = 2
 
-[connection signal="pressed" from="Background/Tablero/HBoxContainer/Casilla8A/Button" to="." method="_on_button_pressed"]
+[node name="Casilla7A" parent="Background/Tablero/Fila7" instance=ExtResource("2_q4wer")]
+
+[node name="Casilla7B" parent="Background/Tablero/Fila7" instance=ExtResource("2_q4wer")]
+position = Vector2(135, 0)
+
+[node name="Casilla7C" parent="Background/Tablero/Fila7" instance=ExtResource("2_q4wer")]
+position = Vector2(270, 0)
+
+[node name="Casilla7D" parent="Background/Tablero/Fila7" instance=ExtResource("2_q4wer")]
+position = Vector2(405, 0)
+
+[node name="Casilla7E" parent="Background/Tablero/Fila7" instance=ExtResource("2_q4wer")]
+position = Vector2(540, 0)
+
+[node name="Casilla7F" parent="Background/Tablero/Fila7" instance=ExtResource("2_q4wer")]
+position = Vector2(675, 0)
+
+[node name="Casilla7G" parent="Background/Tablero/Fila7" instance=ExtResource("2_q4wer")]
+position = Vector2(810, 0)
+
+[node name="Casilla7H" parent="Background/Tablero/Fila7" instance=ExtResource("2_q4wer")]
+position = Vector2(945, 0)
+
+[node name="Fila6" type="HBoxContainer" parent="Background/Tablero"]
+custom_minimum_size = Vector2(0, 131)
+layout_mode = 2
+
+[node name="Casilla6A" parent="Background/Tablero/Fila6" instance=ExtResource("2_q4wer")]
+
+[node name="Casilla6B" parent="Background/Tablero/Fila6" instance=ExtResource("2_q4wer")]
+position = Vector2(135, 0)
+
+[node name="Casilla6C" parent="Background/Tablero/Fila6" instance=ExtResource("2_q4wer")]
+position = Vector2(270, 0)
+
+[node name="Casilla6D" parent="Background/Tablero/Fila6" instance=ExtResource("2_q4wer")]
+position = Vector2(405, 0)
+
+[node name="Casilla6E" parent="Background/Tablero/Fila6" instance=ExtResource("2_q4wer")]
+position = Vector2(540, 0)
+
+[node name="Casilla6F" parent="Background/Tablero/Fila6" instance=ExtResource("2_q4wer")]
+position = Vector2(675, 0)
+
+[node name="Casilla6G" parent="Background/Tablero/Fila6" instance=ExtResource("2_q4wer")]
+position = Vector2(810, 0)
+
+[node name="Casilla6H" parent="Background/Tablero/Fila6" instance=ExtResource("2_q4wer")]
+position = Vector2(945, 0)
+
+[node name="Fila5" type="HBoxContainer" parent="Background/Tablero"]
+custom_minimum_size = Vector2(0, 131)
+layout_mode = 2
+
+[node name="Casilla5A" parent="Background/Tablero/Fila5" instance=ExtResource("2_q4wer")]
+
+[node name="Casilla5B" parent="Background/Tablero/Fila5" instance=ExtResource("2_q4wer")]
+position = Vector2(135, 0)
+
+[node name="Casilla5C" parent="Background/Tablero/Fila5" instance=ExtResource("2_q4wer")]
+position = Vector2(270, 0)
+
+[node name="Casilla5D" parent="Background/Tablero/Fila5" instance=ExtResource("2_q4wer")]
+position = Vector2(405, 0)
+
+[node name="Casilla5E" parent="Background/Tablero/Fila5" instance=ExtResource("2_q4wer")]
+position = Vector2(540, 0)
+
+[node name="Casilla5F" parent="Background/Tablero/Fila5" instance=ExtResource("2_q4wer")]
+position = Vector2(675, 0)
+
+[node name="Casilla5G" parent="Background/Tablero/Fila5" instance=ExtResource("2_q4wer")]
+position = Vector2(810, 0)
+
+[node name="Casilla5H" parent="Background/Tablero/Fila5" instance=ExtResource("2_q4wer")]
+position = Vector2(945, 0)
+
+[node name="Fila4" type="HBoxContainer" parent="Background/Tablero"]
+custom_minimum_size = Vector2(0, 131)
+layout_mode = 2
+
+[node name="Casilla4A" parent="Background/Tablero/Fila4" instance=ExtResource("2_q4wer")]
+
+[node name="Casilla4B" parent="Background/Tablero/Fila4" instance=ExtResource("2_q4wer")]
+position = Vector2(135, 0)
+
+[node name="Casilla4C" parent="Background/Tablero/Fila4" instance=ExtResource("2_q4wer")]
+position = Vector2(270, 0)
+
+[node name="Casilla4D" parent="Background/Tablero/Fila4" instance=ExtResource("2_q4wer")]
+position = Vector2(405, 0)
+
+[node name="Casilla4E" parent="Background/Tablero/Fila4" instance=ExtResource("2_q4wer")]
+position = Vector2(540, 0)
+
+[node name="Casilla4F" parent="Background/Tablero/Fila4" instance=ExtResource("2_q4wer")]
+position = Vector2(675, 0)
+
+[node name="Casilla4G" parent="Background/Tablero/Fila4" instance=ExtResource("2_q4wer")]
+position = Vector2(810, 0)
+
+[node name="Casilla4H" parent="Background/Tablero/Fila4" instance=ExtResource("2_q4wer")]
+position = Vector2(945, 0)
+
+[node name="Fila3" type="HBoxContainer" parent="Background/Tablero"]
+custom_minimum_size = Vector2(0, 131)
+layout_mode = 2
+
+[node name="Casilla3A" parent="Background/Tablero/Fila3" instance=ExtResource("2_q4wer")]
+
+[node name="Casilla3B" parent="Background/Tablero/Fila3" instance=ExtResource("2_q4wer")]
+position = Vector2(135, 0)
+
+[node name="Casilla3C" parent="Background/Tablero/Fila3" instance=ExtResource("2_q4wer")]
+position = Vector2(270, 0)
+
+[node name="Casilla3D" parent="Background/Tablero/Fila3" instance=ExtResource("2_q4wer")]
+position = Vector2(405, 0)
+
+[node name="Casilla3E" parent="Background/Tablero/Fila3" instance=ExtResource("2_q4wer")]
+position = Vector2(540, 0)
+
+[node name="Casilla3F" parent="Background/Tablero/Fila3" instance=ExtResource("2_q4wer")]
+position = Vector2(675, 0)
+
+[node name="Casilla3G" parent="Background/Tablero/Fila3" instance=ExtResource("2_q4wer")]
+position = Vector2(810, 0)
+
+[node name="Casilla3H" parent="Background/Tablero/Fila3" instance=ExtResource("2_q4wer")]
+position = Vector2(945, 0)
+
+[node name="Fila2" type="HBoxContainer" parent="Background/Tablero"]
+custom_minimum_size = Vector2(0, 131)
+layout_mode = 2
+
+[node name="Casilla2A" parent="Background/Tablero/Fila2" instance=ExtResource("2_q4wer")]
+
+[node name="Casilla2B" parent="Background/Tablero/Fila2" instance=ExtResource("2_q4wer")]
+position = Vector2(135, 0)
+
+[node name="Casilla2C" parent="Background/Tablero/Fila2" instance=ExtResource("2_q4wer")]
+position = Vector2(270, 0)
+
+[node name="Casilla2D" parent="Background/Tablero/Fila2" instance=ExtResource("2_q4wer")]
+position = Vector2(405, 0)
+
+[node name="Casilla2E" parent="Background/Tablero/Fila2" instance=ExtResource("2_q4wer")]
+position = Vector2(540, 0)
+
+[node name="Casilla2F" parent="Background/Tablero/Fila2" instance=ExtResource("2_q4wer")]
+position = Vector2(675, 0)
+
+[node name="Casilla2G" parent="Background/Tablero/Fila2" instance=ExtResource("2_q4wer")]
+position = Vector2(810, 0)
+
+[node name="Casilla2H" parent="Background/Tablero/Fila2" instance=ExtResource("2_q4wer")]
+position = Vector2(945, 0)
+
+[node name="Fila1" type="HBoxContainer" parent="Background/Tablero"]
+custom_minimum_size = Vector2(0, 131)
+layout_mode = 2
+
+[node name="Casilla1A" parent="Background/Tablero/Fila1" instance=ExtResource("2_q4wer")]
+
+[node name="Casilla1B" parent="Background/Tablero/Fila1" instance=ExtResource("2_q4wer")]
+position = Vector2(135, 0)
+
+[node name="Casilla1C" parent="Background/Tablero/Fila1" instance=ExtResource("2_q4wer")]
+position = Vector2(270, 0)
+
+[node name="Casilla1D" parent="Background/Tablero/Fila1" instance=ExtResource("2_q4wer")]
+position = Vector2(405, 0)
+
+[node name="Casilla1E" parent="Background/Tablero/Fila1" instance=ExtResource("2_q4wer")]
+position = Vector2(540, 0)
+
+[node name="Casilla1F" parent="Background/Tablero/Fila1" instance=ExtResource("2_q4wer")]
+position = Vector2(675, 0)
+
+[node name="Casilla1G" parent="Background/Tablero/Fila1" instance=ExtResource("2_q4wer")]
+position = Vector2(810, 0)
+
+[node name="Casilla1H" parent="Background/Tablero/Fila1" instance=ExtResource("2_q4wer")]
+position = Vector2(945, 0)
+
+[connection signal="pressed" from="Background/Tablero/Fila8/Casilla8A/Button2" to="." method="_on_button_pressed"]
