@@ -2,28 +2,37 @@ extends Control
 @onready var button = $Background/Tablero/Fila8/Casilla8A/Button2
 
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var i=8
 	var j=0
-	
-	
+	var casilla="";
+	var casillaBlanca="Casilla2.png";
+	var casillaNegra="Casilla1.png";
+	#Recorremos el tablero en busca de filas
 	for child in $Background/Tablero.get_children():
-		if child is HBoxContainer:
+		if child is HBoxContainer: 
+			#Recorremos las filas en busca de Casillas
 			for child2 in child.get_children():
-				j+=1
 				if child2 is Casilla:
-					child2.init(""+str(i)+letra(j), "Casilla2.png")
+					j+=1
+					#Designamos la skin de la ficha
+					if (j%2!=0 && i%2==0):
+						casilla = casillaBlanca;
+					elif (j%2==0 && i%2!=0):
+						casilla = casillaBlanca;
+					else:
+						casilla = casillaNegra;
+					#Inicializamos la ficha
+					child2.init(""+str(i)+letra(j), casilla)
+					
 					#DEBUG
-					print("Encontrado->"+str(i)+letra(j))
+					#print("Encontrado->"+str(i)+letra(j)+"--->"+casilla)
 		i-=1
 		j=0
 
-	#$Background/Tablero/Fila8/Casilla8A.init("8A", "Casilla2.png")
-	#$Background/Tablero/Fila8/Casilla8B.init("8B", "Casilla1.png")
 
+#Funcion para obtener la letra de la casilla con el numero de esta en el eje x
 func letra (num):
 	var letra = ""
 	if (num==1):
