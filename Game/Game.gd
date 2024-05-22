@@ -9,6 +9,9 @@ func _ready():
 	var casilla="";
 	var casillaBlanca="Casilla2.png";
 	var casillaNegra="Casilla1.png";
+	var newSkinThis="this1.png";
+	var newSkinAttack="attack1.png";
+	var newSkinMov="move1.png";
 	#Recorremos el tablero en busca de filas
 	for child in $Background/Tablero.get_children():
 		if child is HBoxContainer: 
@@ -24,7 +27,7 @@ func _ready():
 					else:
 						casilla = casillaNegra;
 					#Inicializamos la ficha
-					child2.init(""+str(i)+letra(j), casilla)
+					child2.init(""+str(i)+letra(j), casilla, newSkinThis, newSkinAttack, newSkinMov)
 					
 					#DEBUG
 					#print("Encontrado->"+str(i)+letra(j)+"--->"+casilla)
@@ -67,3 +70,4 @@ func _on_button_pressed():
 	$Background/Tablero/Fila8/Casilla8B.add_child(button)
 	button.position = Vector2(0, 0)
 	print("final:"+button.get_parent().ID_CASILLA)
+	$Background/Tablero/Fila8/Casilla8B.setPosition()
