@@ -21,7 +21,6 @@ func _process(delta):
 
 
 func init(newtipoFicha, newskinFicha, newPosY, newPosX, newEquipoBlanco):
-	print("Iniciando")
 	tipoFicha = newtipoFicha
 	skinFicha = newskinFicha
 	var ruta = "res://Sprites/" + skinFicha

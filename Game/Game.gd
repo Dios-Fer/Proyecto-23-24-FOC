@@ -141,8 +141,7 @@ func pintarMovimientos (btPresed):
 	btPresed.get_parent().setPosition()
 	
 	if (tipo=="peon"):
-		#TODO pintarPeon(btPresed)
-		pass
+		pintarPeon(btPresed)
 	elif (tipo=="rey"):
 		#TODO pintarRey(btPresed)
 		pass
@@ -160,6 +159,52 @@ func pintarMovimientos (btPresed):
 		#TODO pintarDiagonal(btPresed)
 		pass
 		
+	
+					
+func pintarPeon (btPresed):
+	var numIni = btPresed.get_parent().get_child(2).posY
+	var letraIni = btPresed.get_parent().get_child(2).posX
+	var iniPeon = 0
+	var direccionPeon = 0
+	var filaIntermedia
+	
+	if (turnoBlanco):
+		iniPeon=2
+		direccionPeon=1
+		filaIntermedia = $Background/Tablero/Fila3
+	else: 
+		iniPeon=7
+		direccionPeon=-1
+		filaIntermedia = $Background/Tablero/Fila6
+	
+
+	for fila in $Background/Tablero.get_children():
+		if fila is HBoxContainer: 
+			
+			#Recorremos las filas en busca de Casillas
+			for casillaEncontrada in fila.get_children():
+				if casillaEncontrada is Casilla:
+
+					#Condicion para matar
+					if (((casillaEncontrada.posX==letraIni+1 || 
+					casillaEncontrada.posX==letraIni-1)&&
+					casillaEncontrada.posY==numIni+direccionPeon)&&
+					casillaEncontrada.get_children().size()>2 &&
+					casillaEncontrada.get_child(2).equipoBlanco!=turnoBlanco):
+						casillaEncontrada.setPosibleAtaque()
+					#Condicion para movimiento inicial
+					if (numIni==iniPeon && 
+					casillaEncontrada.posX == letraIni && 
+					casillaEncontrada.posY == numIni+(2*direccionPeon) &&
+					casillaEncontrada.get_children().size()<=2 &&
+					filaIntermedia.get_child(casillaEncontrada.posX-1).get_children().size()<=2): 
+						casillaEncontrada.setPosibleMov()
+					#Condicion para mover una hacia delante
+					if (casillaEncontrada.posX == letraIni && 
+					casillaEncontrada.posY == numIni+(direccionPeon) &&
+					casillaEncontrada.get_children().size()<=2):
+						casillaEncontrada.setPosibleMov()
+
 func limpiarTablero():
 	for fila in $Background/Tablero.get_children():
 		if fila is HBoxContainer: 
