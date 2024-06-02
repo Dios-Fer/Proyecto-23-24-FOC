@@ -79,7 +79,94 @@ func _process(delta):
 	
 #cuando se pulsa un boton
 func touchBT(btPresed):
-	pass#TODO
+	#comprobar si ya me estoy moviendo
+	if (jugadaIniciada):
+		tryMove(lastBtPresed, btPresed)
+	else:
+		if ((btPresed.get_parent().get_children().size()-1)<2):
+			#print("SIN-INICIAR-JUGADA" + "-->" + "PULSANDOVACIO")
+			pass
+		elif (turnoBlanco==btPresed.get_parent().get_child(2).equipoBlanco):
+			#print("SIN-INICIAR-JUGADA" + "-->" + "PULSANDOMIEQUIPO")
+			pintarMovimientos(btPresed)
+			lastBtPresed = btPresed
+			jugadaIniciada = true
+		else:
+			#print("SIN-INICIAR-JUGADA" + "-->" + "NO_PULSANDOMIEQUIPO")
+			pass
+
+func tryMove (lastBtPresed, btPresed):
+	var moviendo
+	var matado
+	
+	#TODO transformacion de peon en ultima linea
+
+	if(btPresed.get_parent().movible==true):
+		moviendo = lastBtPresed.get_parent().get_child(2)
+		lastBtPresed.get_parent().remove_child(moviendo)
+		btPresed.get_parent().add_child(moviendo)
+		moviendo.posX = btPresed.get_parent().posX
+		moviendo.posY = btPresed.get_parent().posY
+		jugadaIniciada = false
+		turnoBlanco = !turnoBlanco
+		limpiarTablero()
+
+	elif(btPresed.get_parent().matable==true):
+		matado = btPresed.get_parent().get_child(2)
+		btPresed.get_parent().remove_child(matado)
+		
+		moviendo = lastBtPresed.get_parent().get_child(2)
+		lastBtPresed.get_parent().remove_child(moviendo)
+		
+		btPresed.get_parent().add_child(moviendo)
+		#TODO deadZone.get_parent().add_child(matado)
+		
+		moviendo.posX = btPresed.get_parent().posX
+		moviendo.posY = btPresed.get_parent().posY
+		
+		jugadaIniciada = false
+		turnoBlanco = !turnoBlanco
+		limpiarTablero()
+	
+	else:
+		jugadaIniciada = false
+		limpiarTablero()
+
+	
+	
+func pintarMovimientos (btPresed):
+	
+	var tipo =  btPresed.get_parent().get_child(2).tipoFicha
+	
+	btPresed.get_parent().setPosition()
+	
+	if (tipo=="peon"):
+		#TODO pintarPeon(btPresed)
+		pass
+	elif (tipo=="rey"):
+		#TODO pintarRey(btPresed)
+		pass
+	elif (tipo=="reina"):
+		#TODO pintarRectas(btPresed)
+		#TODO pintarDiagonal(btPresed)
+		pass
+	elif (tipo=="torre"):
+		#TODO pintarRectas(btPresed)
+		pass
+	elif (tipo=="caballo"):
+		#TODO pintarCaballo(btPresed)
+		pass
+	elif (tipo=="alfil"):
+		#TODO pintarDiagonal(btPresed)
+		pass
+		
+func limpiarTablero():
+	for fila in $Background/Tablero.get_children():
+		if fila is HBoxContainer: 
+			#Recorremos las filas en busca de Casillas
+			for casillaEncontrada in fila.get_children():
+				if casillaEncontrada is Casilla:
+					casillaEncontrada.clearStatus()
 
 func iniciarFichas ():
 	# EquipoNegro
