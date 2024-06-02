@@ -143,8 +143,7 @@ func pintarMovimientos (btPresed):
 	if (tipo=="peon"):
 		pintarPeon(btPresed)
 	elif (tipo=="rey"):
-		#TODO pintarRey(btPresed)
-		pass
+		pintarRey(btPresed)
 	elif (tipo=="reina"):
 		#TODO pintarRectas(btPresed)
 		#TODO pintarDiagonal(btPresed)
@@ -153,8 +152,7 @@ func pintarMovimientos (btPresed):
 		#TODO pintarRectas(btPresed)
 		pass
 	elif (tipo=="caballo"):
-		#TODO pintarCaballo(btPresed)
-		pass
+		pintarCaballo(btPresed)
 	elif (tipo=="alfil"):
 		#TODO pintarDiagonal(btPresed)
 		pass
@@ -204,6 +202,53 @@ func pintarPeon (btPresed):
 					casillaEncontrada.posY == numIni+(direccionPeon) &&
 					casillaEncontrada.get_children().size()<=2):
 						casillaEncontrada.setPosibleMov()
+
+func pintarCaballo(btPresed):
+	var difY
+	var difX
+	for fila in $Background/Tablero.get_children():
+		if fila is HBoxContainer: 
+			
+			#Recorremos las filas en busca de Casillas
+			for casillaEncontrada in fila.get_children():
+				if casillaEncontrada is Casilla:
+					difX = abs(casillaEncontrada.posX - btPresed.get_parent().posX)
+					difY = abs(casillaEncontrada.posY - btPresed.get_parent().posY)
+
+					if(
+					((difX == 2)&&(difY == 1))||
+					((difX == 1)&&(difY == 2))
+					):
+						if (casillaEncontrada.get_children().size()<=2):
+							casillaEncontrada.setPosibleMov()
+						else:
+							if (casillaEncontrada.get_child(2).equipoBlanco!=turnoBlanco):
+								casillaEncontrada.setPosibleAtaque()
+								
+func pintarRey(btPresed):
+	var difY
+	var difX
+	for fila in $Background/Tablero.get_children():
+		if fila is HBoxContainer: 
+			
+			#Recorremos las filas en busca de Casillas
+			for casillaEncontrada in fila.get_children():
+				if casillaEncontrada is Casilla:
+					difX = abs(casillaEncontrada.posX - btPresed.get_parent().posX)
+					difY = abs(casillaEncontrada.posY - btPresed.get_parent().posY)
+
+					if(
+					((difX == 1)&&(difY == 1))||
+					((difX == 1)&&(difY == 1))||
+					((difX == 0)&&(difY == 1))||
+					((difX == 1)&&(difY == 0))
+					):
+						if (casillaEncontrada.get_children().size()<=2):
+							casillaEncontrada.setPosibleMov()
+						else:
+							if (casillaEncontrada.get_child(2).equipoBlanco!=turnoBlanco):
+								casillaEncontrada.setPosibleAtaque()
+								
 
 func limpiarTablero():
 	for fila in $Background/Tablero.get_children():
