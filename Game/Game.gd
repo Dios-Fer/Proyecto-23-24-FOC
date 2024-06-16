@@ -100,6 +100,7 @@ func tryMove (lastBtPresed, btPresed):
 	var matado
 	
 	#TODO transformacion de peon en ultima linea
+	#TODO terminar al matar reina
 
 	if(btPresed.get_parent().movible==true):
 		moviendo = lastBtPresed.get_parent().get_child(2)
@@ -145,16 +146,16 @@ func pintarMovimientos (btPresed):
 	elif (tipo=="rey"):
 		pintarRey(btPresed)
 	elif (tipo=="reina"):
-		#TODO pintarRectas(btPresed)
-		#TODO pintarDiagonal(btPresed)
+		pintarRectas(btPresed)
+		pintarDiagonal(btPresed)
 		pass
 	elif (tipo=="torre"):
-		#TODO pintarRectas(btPresed)
+		pintarRectas(btPresed)
 		pass
 	elif (tipo=="caballo"):
 		pintarCaballo(btPresed)
 	elif (tipo=="alfil"):
-		#TODO pintarDiagonal(btPresed)
+		pintarDiagonal(btPresed)
 		pass
 		
 	
@@ -250,6 +251,110 @@ func pintarRey(btPresed):
 								casillaEncontrada.setPosibleAtaque()
 								
 
+
+func pintarRectas(btPresed):
+	var difY
+	var difX
+	var fichaInterponiendose###
+	
+	for fila in $Background/Tablero.get_children():
+		if fila is HBoxContainer: 
+			#Recorremos las filas en busca de Casillas
+			for casillaEncontrada in fila.get_children():
+				if casillaEncontrada is Casilla:
+					difX = (casillaEncontrada.posX - btPresed.get_parent().posX)
+					difY = (casillaEncontrada.posY - btPresed.get_parent().posY)
+					if(
+					((difX == 0)&&(difY != 0))||
+					((difX != 0)&&(difY == 0))
+					):
+						fichaInterponiendose=false
+						if (difX == 0):
+							if (difY>0):
+								#Hacia arriba
+								for i in range(1, difY):
+									if (($Background/Tablero.get_child(8-(casillaEncontrada.posY-i))).get_child(btPresed.get_parent().posX-1).get_children().size()>2):
+										fichaInterponiendose=true
+										#print("FICHA EN MEDIO")
+							else:
+								#Hacia abajo
+								for i in range(1, abs(difY)):
+									if (($Background/Tablero.get_child(8-(casillaEncontrada.posY+i))).get_child(btPresed.get_parent().posX-1).get_children().size()>2):
+										fichaInterponiendose=true
+										#print("FICHA EN MEDIO")
+						else:
+							if (difX>0):
+								#Hacia derecha
+								for i in range(1, abs(difX)):
+									if (($Background/Tablero.get_child(8-(btPresed.get_parent().posY))).get_child(casillaEncontrada.posX-i-1).get_children().size()>2):
+										fichaInterponiendose=true
+										#print("FICHA EN MEDIO")
+							else:
+								#Hacia izquierda
+								for i in range(1, abs(difX)):
+									if (($Background/Tablero.get_child(8-(btPresed.get_parent().posY))).get_child(casillaEncontrada.posX+i-1).get_children().size()>2):
+										fichaInterponiendose=true
+										#print("FICHA EN MEDIO")
+						if(fichaInterponiendose):
+							pass
+						elif (casillaEncontrada.get_children().size()<=2):
+							casillaEncontrada.setPosibleMov()
+						else:
+							if (casillaEncontrada.get_child(2).equipoBlanco!=turnoBlanco):
+								casillaEncontrada.setPosibleAtaque()
+								
+
+
+func pintarDiagonal(btPresed):
+	var difY
+	var difX
+	var fichaInterponiendose###
+	
+	for fila in $Background/Tablero.get_children():
+		if fila is HBoxContainer: 
+			#Recorremos las filas en busca de Casillas
+			for casillaEncontrada in fila.get_children():
+				if casillaEncontrada is Casilla:
+					difX = (casillaEncontrada.posX - btPresed.get_parent().posX)
+					difY = (casillaEncontrada.posY - btPresed.get_parent().posY)
+					if(
+					(abs(difX) == abs(difY))
+					):
+						fichaInterponiendose=false
+
+						if (difY>0 && difX>0):
+							#Hacia arriba derecha
+							for i in range(1, difY):
+								if (($Background/Tablero.get_child(8-(casillaEncontrada.posY-i))).get_child(casillaEncontrada.posX-i-1).get_children().size()>2):
+									fichaInterponiendose=true
+						elif (difY>0 && difX<0):
+							#Hacia arriba izquierda
+							for i in range(1, difY):
+								if (($Background/Tablero.get_child(8-(casillaEncontrada.posY-i))).get_child(casillaEncontrada.posX+i-1).get_children().size()>2):
+									fichaInterponiendose=true
+						elif (difY<0 && difX>0):
+							#Hacia abajo derecha
+							for i in range(1, abs(difY)):
+								#ARREGLAR
+								if (($Background/Tablero.get_child(8-(casillaEncontrada.posY+i))).get_child(casillaEncontrada.posX-i-1).get_children().size()>2):
+									fichaInterponiendose=true
+						elif (difY<0 && difX<0):
+							#Hacia abajo izquierda
+							for i in range(1, abs(difY)):
+								if (($Background/Tablero.get_child(8-(casillaEncontrada.posY+i))).get_child(casillaEncontrada.posX+i-1).get_children().size()>2):
+									fichaInterponiendose=true
+							
+							
+						if(fichaInterponiendose):
+							pass
+						elif (casillaEncontrada.get_children().size()<=2):
+							casillaEncontrada.setPosibleMov()
+						else:
+							if (casillaEncontrada.get_child(2).equipoBlanco!=turnoBlanco):
+								casillaEncontrada.setPosibleAtaque()
+								
+
+
 func limpiarTablero():
 	for fila in $Background/Tablero.get_children():
 		if fila is HBoxContainer: 
@@ -280,7 +385,7 @@ func iniciarFichas ():
 	$Background/Tablero/Fila1/Casilla1A/Ficha1A.init("torre", skinTorreBlanco, 1, 1, true)
 	$Background/Tablero/Fila1/Casilla1B/Ficha1B.init("caballo", skinCaballoBlanco, 1, 2, true)
 	$Background/Tablero/Fila1/Casilla1C/Ficha1C.init("alfil", skinAlfilBlanco, 1, 3, true)
-	$Background/Tablero/Fila1/Casilla1D/Ficha1D.init("rina", skinReinaBlanco, 1, 4, true)
+	$Background/Tablero/Fila1/Casilla1D/Ficha1D.init("reina", skinReinaBlanco, 1, 4, true)
 	$Background/Tablero/Fila1/Casilla1E/Ficha1E.init("rey", skinReyBlanco, 1, 5, true)
 	$Background/Tablero/Fila1/Casilla1F/Ficha1F.init("alfil", skinAlfilBlanco, 1, 6, true)
 	$Background/Tablero/Fila1/Casilla1G/Ficha1G.init("caballo", skinCaballoBlanco, 1, 7, true)
