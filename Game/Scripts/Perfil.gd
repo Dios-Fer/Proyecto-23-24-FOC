@@ -2,6 +2,10 @@ extends Control
 
 var COLLECTION_ID = "perfil_usuario"
 
+var partidasJugadas = 0
+var partidasGanadasBlancas = 0
+var partidasGanadasNegras = 0
+
 # Funcion llamada al inicio
 func _ready():
 	loadData()
@@ -35,10 +39,14 @@ func saveData():
 		# Obtenemos la coleccion
 		var collection: FirestoreCollection = Firebase.Firestore.collection(COLLECTION_ID)
 		# Preparamos los datos que vamos  a guardar
-		var user_name = $VBoxContainer/UserNameEdit.text
+		var user_name = $VBoxContainer/VBoxContainer/UserNameEdit.text
 		# Creamos la variable con los datos
+		
 		var data: Dictionary = {
-			"user_name": user_name	
+			"user_name": user_name,
+			"partidasJugadas": partidasJugadas,
+			"partidasGanadasBlancas": partidasGanadasBlancas,
+			"partidasGanadasNegras": partidasGanadasNegras
 		}
 		# Actualizamos la base de datos
 		var task: FirestoreTask = collection.update(auth.localid, data)
@@ -59,6 +67,20 @@ func loadData():
 		if document && document.doc_fields:
 			#Si tiene nombre de usuario lo ponemos en el texto del boton
 			if document.doc_fields.user_name:
-				$VBoxContainer/UserNameEdit.text = document.doc_fields.user_name
+				$VBoxContainer/VBoxContainer/UserNameEdit.text = document.doc_fields.user_name
+			if document.doc_fields.partidasJugadas:
+				partidasJugadas = document.doc_fields.partidasJugadas
+			if document.doc_fields.partidasGanadasBlancas:
+				partidasGanadasBlancas = document.doc_fields.partidasGanadasBlancas
+			if document.doc_fields.partidasGanadasNegras:
+				partidasGanadasNegras = document.doc_fields.partidasGanadasNegras
+			mostrarEstadisticas()
 		else:
 			print(finished_task.error)
+			
+			
+func mostrarEstadisticas():
+	$VBoxContainer/VBoxContainer2/partidasJugadas.text=str(partidasJugadas)
+	$VBoxContainer/VBoxContainer3/partidasGanadasBlancas.text=str(partidasGanadasBlancas)
+	$VBoxContainer/VBoxContainer4/partidasGanadasNegras.text=str(partidasGanadasNegras)
+	

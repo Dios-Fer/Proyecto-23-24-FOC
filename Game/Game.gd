@@ -1,5 +1,12 @@
 extends Control
 
+var COLLECTION_ID = "perfil_usuario"
+
+var partidasJugadas = 0
+var partidasGanadasBlancas = 0
+var partidasGanadasNegras = 0
+var user_name = ""
+
 #Variables de estado de la jugada
 var turnoBlanco = true
 var jugadaIniciada = false
@@ -22,6 +29,7 @@ var skinPeonNegro
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	loadData()
 	#auxiliares
 	var i=8
 	var j=0
@@ -99,9 +107,6 @@ func tryMove (lastBtPresed, btPresed):
 	var moviendo
 	var matado
 	
-	#TODO transformacion de peon en ultima linea
-	#TODO terminar al matar reina
-
 	if(btPresed.get_parent().movible==true):
 		moviendo = lastBtPresed.get_parent().get_child(2)
 		lastBtPresed.get_parent().remove_child(moviendo)
@@ -111,6 +116,12 @@ func tryMove (lastBtPresed, btPresed):
 		jugadaIniciada = false
 		turnoBlanco = !turnoBlanco
 		limpiarTablero()
+		if(turnoBlanco && btPresed.get_parent().get_child(2).tipoFicha=="peon" && btPresed.get_parent().posY==1):
+				btPresed.get_parent().get_child(2).init("reina", skinReinaNegro, btPresed.get_parent().posY, btPresed.get_parent().posX, false)
+				#PreguntarFicha
+		elif((!turnoBlanco) && btPresed.get_parent().get_child(2).tipoFicha=="peon" && btPresed.get_parent().posY==8):
+				btPresed.get_parent().get_child(2).init("reina", skinReinaBlanco, btPresed.get_parent().posY, btPresed.get_parent().posX, true)
+				#PreguntarFicha
 
 	elif(btPresed.get_parent().matable==true):
 		matado = btPresed.get_parent().get_child(2)
@@ -128,6 +139,19 @@ func tryMove (lastBtPresed, btPresed):
 		jugadaIniciada = false
 		turnoBlanco = !turnoBlanco
 		limpiarTablero()
+		if(matado.tipoFicha=="rey"):
+			#TODO indicar victoria
+			if (turnoBlanco):
+				partidasGanadasNegras+=1
+			else:
+				partidasGanadasBlancas+=1
+			cerrar()
+		elif(turnoBlanco && btPresed.get_parent().get_child(2).tipoFicha=="peon" && btPresed.get_parent().posY==1):
+				btPresed.get_parent().get_child(2).init("reina", skinReinaNegro, btPresed.get_parent().posY, btPresed.get_parent().posX, false)
+				#PreguntarFicha
+		elif((!turnoBlanco) && btPresed.get_parent().get_child(2).tipoFicha=="peon" && btPresed.get_parent().posY==8):
+				btPresed.get_parent().get_child(2).init("reina", skinReinaBlanco, btPresed.get_parent().posY, btPresed.get_parent().posX, true)
+				#PreguntarFicha
 	
 	else:
 		jugadaIniciada = false
@@ -363,6 +387,11 @@ func limpiarTablero():
 				if casillaEncontrada is Casilla:
 					casillaEncontrada.clearStatus()
 
+func cerrar(): 
+	partidasJugadas+=1
+	saveData()
+	get_tree().change_scene_to_file("res://Scenes/Menu.tscn")
+
 func iniciarFichas ():
 	# EquipoNegro
 	$Background/Tablero/Fila8/Casilla8A/Ficha8A.init("torre", skinTorreNegro, 8, 1, false)
@@ -530,3 +559,53 @@ func _on_button_casilla_1g_pressed():
 	touchBT($Background/Tablero/Fila1/Casilla1G/ButtonCasilla1G)
 func _on_button_casilla_1h_pressed():
 	touchBT($Background/Tablero/Fila1/Casilla1H/ButtonCasilla1H)
+
+
+func _on_close_pressed():
+	cerrar()
+
+#Cargar los datos
+func loadData():
+	var auth = Firebase.Auth.auth
+	
+	if auth.localid:
+		#obtenemos la coleccion
+		var collection: FirestoreCollection = Firebase.Firestore.collection(COLLECTION_ID)
+		#obtenemos nuestra "id"
+		var task: FirestoreTask = collection.get_doc(auth.localid)
+		var finished_task: FirestoreTask = await task.task_finished
+		#Cuando terminemos de obtener la "id" creamos una variable con el documento
+		var document = finished_task.document
+		#Comprobamos que este bien el documento
+		if document && document.doc_fields:
+			#Si tiene nombre de usuario lo ponemos en el texto del boton
+			if document.doc_fields.user_name:
+				user_name = document.doc_fields.user_name
+			if document.doc_fields.partidasJugadas:
+				partidasJugadas = document.doc_fields.partidasJugadas
+			if document.doc_fields.partidasGanadasBlancas:
+				partidasGanadasBlancas = document.doc_fields.partidasGanadasBlancas
+			if document.doc_fields.partidasGanadasNegras:
+				partidasGanadasNegras = document.doc_fields.partidasGanadasNegras
+
+		else:
+			print(finished_task.error)
+			
+#Guardar los cambios
+func saveData():
+	var auth = Firebase.Auth.auth
+	if auth.localid:
+		# Obtenemos la coleccion
+		var collection: FirestoreCollection = Firebase.Firestore.collection(COLLECTION_ID)
+
+
+		# Creamos la variable con los datos
+		
+		var data: Dictionary = {
+			"user_name": user_name,
+			"partidasJugadas": partidasJugadas,
+			"partidasGanadasBlancas": partidasGanadasBlancas,
+			"partidasGanadasNegras": partidasGanadasNegras
+		}
+		# Actualizamos la base de datos
+		var task: FirestoreTask = collection.update(auth.localid, data)

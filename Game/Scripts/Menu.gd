@@ -44,8 +44,5 @@ func loadData():
 		else:
 			print(finished_task.error)
 
-
-
-
-
-
+func _on_close_pressed():
+	get_tree().quit()

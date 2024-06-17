@@ -730,6 +730,13 @@ flat = true
 [node name="Ficha1H" parent="Background/Tablero/Fila1/Casilla1H" instance=ExtResource("3_4tipp")]
 position = Vector2(0, -1)
 
+[node name="Close" type="Button" parent="Background"]
+layout_mode = 0
+offset_left = 1845.0
+offset_right = 1921.0
+offset_bottom = 77.0
+text = "Exit"
+
 [connection signal="pressed" from="Background/Tablero/Fila8/Casilla8A/ButtonCasilla8A" to="." method="_on_button_casilla_8a_pressed"]
 [connection signal="pressed" from="Background/Tablero/Fila8/Casilla8B/ButtonCasilla8B" to="." method="_on_button_casilla_8b_pressed"]
 [connection signal="pressed" from="Background/Tablero/Fila8/Casilla8C/ButtonCasilla8C" to="." method="_on_button_casilla_8c_pressed"]
@@ -794,3 +801,4 @@ position = Vector2(0, -1)
 [connection signal="pressed" from="Background/Tablero/Fila1/Casilla1F/ButtonCasilla1F" to="." method="_on_button_casilla_1f_pressed"]
 [connection signal="pressed" from="Background/Tablero/Fila1/Casilla1G/ButtonCasilla1G" to="." method="_on_button_casilla_1g_pressed"]
 [connection signal="pressed" from="Background/Tablero/Fila1/Casilla1H/ButtonCasilla1H" to="." method="_on_button_casilla_1h_pressed"]
+[connection signal="pressed" from="Background/Close" to="." method="_on_close_pressed"]

@@ -30,7 +30,13 @@ text = "User"
 layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 0
-text = "X"
+text = "Cerrar Sesion"
+
+[node name="Close" type="Button" parent="VBoxContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Salir"
 
 [node name="Play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -43,4 +49,5 @@ text = "Play"
 
 [connection signal="pressed" from="VBoxContainer/Perfil" to="." method="_on_perfil_pressed"]
 [connection signal="pressed" from="VBoxContainer/Cerrar" to="." method="_on_cerrar_pressed"]
+[connection signal="pressed" from="VBoxContainer/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
