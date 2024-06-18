@@ -64,3 +64,7 @@ func on_signup_failed(error_code, message):
 	print(error_code)
 	print(message)
 	$VBoxContainer/StateLabel.text = "Registro fallido: %s" % message
+
+
+func _on_close_pressed():
+	get_tree().quit()

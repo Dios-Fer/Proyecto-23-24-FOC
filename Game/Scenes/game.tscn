@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://nhw1osru862s"]
+[gd_scene load_steps=5 format=3 uid="uid://nhw1osru862s"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_43eeh"]
 [ext_resource type="PackedScene" uid="uid://bm0i5pnrue2pc" path="res://Scenes/casilla.tscn" id="2_q4wer"]
 [ext_resource type="PackedScene" uid="uid://b6vvfmxwbuuyf" path="res://Scenes/ficha.tscn" id="3_4tipp"]
+[ext_resource type="Texture2D" uid="uid://b6t2dwxtie3v5" path="res://Sprites/cerrar.png" id="4_11l77"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -731,11 +732,17 @@ flat = true
 position = Vector2(0, -1)
 
 [node name="Close" type="Button" parent="Background"]
+clip_contents = true
 layout_mode = 0
-offset_left = 1845.0
-offset_right = 1921.0
-offset_bottom = 77.0
-text = "Exit"
+offset_left = 1823.0
+offset_top = -7.0
+offset_right = 3131.0
+offset_bottom = 1301.0
+scale = Vector2(0.08, 0.08)
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"FlatButton"
+icon = ExtResource("4_11l77")
 
 [connection signal="pressed" from="Background/Tablero/Fila8/Casilla8A/ButtonCasilla8A" to="." method="_on_button_casilla_8a_pressed"]
 [connection signal="pressed" from="Background/Tablero/Fila8/Casilla8B/ButtonCasilla8B" to="." method="_on_button_casilla_8b_pressed"]

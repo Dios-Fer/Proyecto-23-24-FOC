@@ -40,7 +40,8 @@ func loadData():
 		if document && document.doc_fields:
 			#Si tiene nombre de usuario lo ponemos en el texto del boton
 			if document.doc_fields.user_name:
-				$VBoxContainer/Perfil.text = document.doc_fields.user_name
+				$VBoxContainer/HBoxContainer/VBoxContainer/Perfil.text = document.doc_fields.user_name
+				
 		else:
 			print(finished_task.error)
 

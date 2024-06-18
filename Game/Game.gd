@@ -45,6 +45,7 @@ func _ready():
 	var newSkinMov="move1.png";
 	
 	#inicializamos variables de skin de ficha
+	#TODO obtener las skins que tiene seleccionadas el usuario 
 	skinTorreBlanco ="torre1.png"
 	skinTorreNegro ="torre2.png"
 	skinCaballoBlanco ="caballo1.png"
